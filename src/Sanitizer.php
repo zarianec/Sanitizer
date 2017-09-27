@@ -11,19 +11,22 @@ class Sanitizer
 {
     /**
      *  Data to sanitize
-     *  @var array
+     *
+     * @var array
      */
     protected $data;
 
     /**
      *  Filters to apply
-     *  @var array
+     *
+     * @var array
      */
     protected $rules;
 
     /**
      *  Available filters as $name => $classPath
-     *  @var array
+     *
+     * @var array
      */
     protected $filters = [
         'capitalize'  => \Waavi\Sanitizer\Filters\Capitalize::class,
@@ -38,23 +41,23 @@ class Sanitizer
     /**
      *  Create a new sanitizer instance.
      *
-     *  @param  array   $data
-     *  @param  array   $rules      Rules to be applied to each data attribute
-     *  @param  array   $filters    Available filters for this sanitizer
-     *  @return Sanitizer
+     * @param  array $data
+     * @param  array $rules Rules to be applied to each data attribute
+     * @param  array $filters Available filters for this sanitizer
+     * @return Sanitizer
      */
     public function __construct(array $data, array $rules, array $customFilters = [])
     {
-        $this->data    = $data;
-        $this->rules   = $this->parseRulesArray($rules);
+        $this->data = $data;
+        $this->rules = $this->parseRulesArray($rules);
         $this->filters = array_merge($this->filters, $customFilters);
     }
 
     /**
      *  Parse a rules array.
      *
-     *  @param  array $rules
-     *  @return array
+     * @param  array $rules
+     * @return array
      */
     protected function parseRulesArray(array $rules)
     {
@@ -78,33 +81,35 @@ class Sanitizer
     /**
      *  Parse a rule string formatted as filterName:option1, option2 into an array formatted as [name => filterName, options => [option1, option2]]
      *
-     *  @param  string $rule    Formatted as 'filterName:option1, option2' or just 'filterName'
-     *  @return array           Formatted as [name => filterName, options => [option1, option2]]. Empty array if no filter name was found.
+     * @param  string $rule Formatted as 'filterName:option1, option2' or just 'filterName'
+     * @return array           Formatted as [name => filterName, options => [option1, option2]]. Empty array if no filter name was found.
      */
     protected function parseRuleString($rule)
     {
         if (strpos($rule, ':') !== false) {
             list($name, $options) = explode(':', $rule, 2);
-            $options              = array_map('trim', explode(',', $options));
+            $options = array_map('trim', explode(',', $options));
         } else {
-            $name    = $rule;
+            $name = $rule;
             $options = [];
         }
-        if (!$name) {
+        if (! $name) {
             return [];
         }
+
         return compact('name', 'options');
     }
 
     /**
      *  Apply the given filter by its name
-     *  @param  $name
-     *  @return Filter
+     *
+     * @param  $name
+     * @return Filter
      */
     protected function applyFilter($name, $value, $options = [])
     {
         // If the filter does not exist, throw an Exception:
-        if (!isset($this->filters[$name])) {
+        if (! isset($this->filters[$name])) {
             throw new InvalidArgumentException("No filter found by the name of $name");
         }
 
@@ -113,13 +118,15 @@ class Sanitizer
             return call_user_func_array($filter, [$value, $options]);
         } else {
             $filter = new $filter;
+
             return $filter->apply($value, $options);
         }
     }
 
     /**
      *  Sanitize the given data
-     *  @return array
+     *
+     * @return array
      */
     public function sanitize()
     {
@@ -141,9 +148,9 @@ class Sanitizer
     /**
      *  Sanitize the given attribute
      *
-     *  @param  string  $attribute  Attribute name
-     *  @param  mixed   $value      Attribute value
-     *  @return mixed   Sanitized value
+     * @param  string $attribute Attribute name
+     * @param  mixed $value Attribute value
+     * @return mixed   Sanitized value
      */
     protected function sanitizeAttribute($attribute, $value)
     {
@@ -152,6 +159,7 @@ class Sanitizer
                 $value = $this->applyFilter($rule['name'], $value, $rule['options']);
             }
         }
+
         return $value;
     }
 }

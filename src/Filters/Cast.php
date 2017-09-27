@@ -10,8 +10,8 @@ class Cast implements Filter
     /**
      *  Capitalize the given string.
      *
-     *  @param  string  $value
-     *  @return string
+     * @param  string $value
+     * @return string
      */
     public function apply($value, $options = [])
     {
@@ -35,6 +35,7 @@ class Cast implements Filter
                 return json_decode($value, true);
             case 'collection':
                 $array = is_array($value) ? $value : json_decode($value, true);
+
                 return new Collection($array);
             default:
                 throw new \InvalidArgumentException("Wrong Sanitizer casting format: {$type}.");
