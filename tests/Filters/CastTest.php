@@ -12,12 +12,13 @@ class CastTest extends \PHPUnit\Framework\TestCase
     public function sanitize($data, $rules)
     {
         $sanitizer = new Sanitizer($data, $rules);
+
         return $sanitizer->sanitize();
     }
 
     /**
-     *  @test
-     *  @expectedException \InvalidArgumentException
+     * @test
+     * @expectedException \InvalidArgumentException
      */
     public function it_throws_exception_when_no_cast_type_is_set()
     {
@@ -25,8 +26,8 @@ class CastTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     *  @test
-     *  @expectedException \InvalidArgumentException
+     * @test
+     * @expectedException \InvalidArgumentException
      */
     public function it_throws_exception_when_non_existing_cast_type_is_set()
     {
@@ -34,7 +35,7 @@ class CastTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     *  @test
+     * @test
      */
     public function it_casts_to_integer()
     {
@@ -44,7 +45,7 @@ class CastTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     *  @test
+     * @test
      */
     public function it_casts_to_float()
     {
@@ -54,7 +55,7 @@ class CastTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     *  @test
+     * @test
      */
     public function it_casts_to_string()
     {
@@ -64,7 +65,7 @@ class CastTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     *  @test
+     * @test
      */
     public function it_casts_to_boolean()
     {
@@ -74,7 +75,7 @@ class CastTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     *  @test
+     * @test
      */
     public function it_casts_array_to_object()
     {
@@ -83,14 +84,14 @@ class CastTest extends \PHPUnit\Framework\TestCase
             'cost' => 15.6,
         ];
         $encodedData = $data;
-        $results     = $this->sanitize(['var' => $encodedData], ['var' => 'cast:object']);
+        $results = $this->sanitize(['var' => $encodedData], ['var' => 'cast:object']);
         $this->assertInstanceOf('stdClass', $results['var']);
         $this->assertEquals('Name', $results['var']->name);
         $this->assertEquals(15.6, $results['var']->cost);
     }
 
     /**
-     *  @test
+     * @test
      */
     public function it_casts_json_to_object()
     {
@@ -99,14 +100,14 @@ class CastTest extends \PHPUnit\Framework\TestCase
             'cost' => 15.6,
         ];
         $encodedData = json_encode($data);
-        $results     = $this->sanitize(['var' => $encodedData], ['var' => 'cast:object']);
+        $results = $this->sanitize(['var' => $encodedData], ['var' => 'cast:object']);
         $this->assertInstanceOf('stdClass', $results['var']);
         $this->assertEquals('Name', $results['var']->name);
         $this->assertEquals(15.6, $results['var']->cost);
     }
 
     /**
-     *  @test
+     * @test
      */
     public function it_casts_json_to_array()
     {
@@ -115,14 +116,14 @@ class CastTest extends \PHPUnit\Framework\TestCase
             'cost' => 15.6,
         ];
         $encodedData = json_encode($data);
-        $results     = $this->sanitize(['var' => $encodedData], ['var' => 'cast:array']);
+        $results = $this->sanitize(['var' => $encodedData], ['var' => 'cast:array']);
         $this->assertInternalType('array', $results['var']);
         $this->assertEquals('Name', $results['var']['name']);
         $this->assertEquals(15.6, $results['var']['cost']);
     }
 
     /**
-     *  @test
+     * @test
      */
     public function it_casts_array_to_collection()
     {
@@ -131,13 +132,13 @@ class CastTest extends \PHPUnit\Framework\TestCase
             'cost' => 15.6,
         ];
         $encodedData = $data;
-        $results     = $this->sanitize(['var' => $encodedData], ['var' => 'cast:collection']);
+        $results = $this->sanitize(['var' => $encodedData], ['var' => 'cast:collection']);
         $this->assertInstanceOf('\Illuminate\Support\Collection', $results['var']);
         $this->assertEquals('Name', $results['var']->first());
     }
 
     /**
-     *  @test
+     * @test
      */
     public function it_casts_json_to_collection()
     {
@@ -146,7 +147,7 @@ class CastTest extends \PHPUnit\Framework\TestCase
             'cost' => 15.6,
         ];
         $encodedData = json_encode($data);
-        $results     = $this->sanitize(['var' => $encodedData], ['var' => 'cast:collection']);
+        $results = $this->sanitize(['var' => $encodedData], ['var' => 'cast:collection']);
         $this->assertInstanceOf('\Illuminate\Support\Collection', $results['var']);
         $this->assertEquals('Name', $results['var']->first());
     }

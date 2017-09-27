@@ -12,11 +12,12 @@ class FormatDateTest extends \PHPUnit\Framework\TestCase
     public function sanitize($data, $rules)
     {
         $sanitizer = new Sanitizer($data, $rules);
+
         return $sanitizer->sanitize();
     }
 
     /**
-     *  @test
+     * @test
      */
     public function it_formats_dates()
     {
@@ -31,8 +32,8 @@ class FormatDateTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     *  @test
-     *  @expectedException \InvalidArgumentException
+     * @test
+     * @expectedException \InvalidArgumentException
      */
     public function it_requires_two_arguments()
     {

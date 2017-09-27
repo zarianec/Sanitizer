@@ -12,11 +12,12 @@ class UppercaseTest extends \PHPUnit\Framework\TestCase
     public function sanitize($data, $rules)
     {
         $sanitizer = new Sanitizer($data, $rules);
+
         return $sanitizer->sanitize();
     }
 
     /**
-     *  @test
+     * @test
      */
     public function it_uppercases_strings()
     {

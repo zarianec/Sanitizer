@@ -3,6 +3,8 @@
 use Waavi\Sanitizer\Laravel\Factory;
 use Waavi\Sanitizer\Sanitizer;
 
+require "CustomFilter.php";
+
 class FactoryTest extends \PHPUnit\Framework\TestCase
 {
     public function sanitize($data, $rules)
@@ -15,6 +17,7 @@ class FactoryTest extends \PHPUnit\Framework\TestCase
             'uppercase'   => \Waavi\Sanitizer\Filters\Uppercase::class,
             'trim'        => \Waavi\Sanitizer\Filters\Trim::class,
         ]);
+
         return $sanitizer->sanitize();
     }
 
