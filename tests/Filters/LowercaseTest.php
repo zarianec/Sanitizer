@@ -2,7 +2,7 @@
 
 use Waavi\Sanitizer\Sanitizer;
 
-class LowercaseTest extends PHPUnit_Framework_TestCase
+class LowercaseTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param $data

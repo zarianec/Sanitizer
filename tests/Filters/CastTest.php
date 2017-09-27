@@ -2,7 +2,7 @@
 
 use Waavi\Sanitizer\Sanitizer;
 
-class CastTest extends PHPUnit_Framework_TestCase
+class CastTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param $data

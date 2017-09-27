@@ -2,7 +2,7 @@
 
 use Waavi\Sanitizer\Sanitizer;
 
-class CapitalizeTest extends PHPUnit_Framework_TestCase
+class CapitalizeTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param $data

@@ -2,7 +2,7 @@
 
 use Waavi\Sanitizer\Sanitizer;
 
-class TrimTest extends PHPUnit_Framework_TestCase
+class TrimTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param $data

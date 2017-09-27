@@ -10,11 +10,11 @@
         }
     ],
     "require": {
-        "illuminate/support": "~5.3",
+        "illuminate/support": "~5.5",
         "nesbot/carbon": "~1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.0"
+        "phpunit/phpunit": "~6.0"
     },
     "autoload": {
         "psr-4": {
@@ -31,7 +31,7 @@
             }
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "scripts": {
         "test": "vendor/bin/phpunit"
     }

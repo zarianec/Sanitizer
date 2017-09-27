@@ -2,7 +2,7 @@
 
 use Waavi\Sanitizer\Sanitizer;
 
-class SanitizerTest extends PHPUnit_Framework_TestCase
+class SanitizerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param $data
@@ -56,7 +56,7 @@ class SanitizerTest extends PHPUnit_Framework_TestCase
      */
     public function it_throws_exception_if_non_existing_filter()
     {
-        $this->setExpectedException(InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $data = [
             'name' => '  HellO EverYboDy   ',
         ];

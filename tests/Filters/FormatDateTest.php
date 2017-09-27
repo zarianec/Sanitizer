@@ -2,7 +2,7 @@
 
 use Waavi\Sanitizer\Sanitizer;
 
-class FormatDateTest extends PHPUnit_Framework_TestCase
+class FormatDateTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param $data

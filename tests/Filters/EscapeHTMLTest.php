@@ -2,7 +2,7 @@
 
 use Waavi\Sanitizer\Sanitizer;
 
-class EscapeHTMLTest extends PHPUnit_Framework_TestCase
+class EscapeHTMLTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param $data
